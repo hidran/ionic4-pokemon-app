@@ -1,9 +1,58 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>pokemon-detail</ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button color="primary"
+                             text="Back"
+                             icon="none"
+                             defaultHref="/"></ion-back-button>
+        </ion-buttons>
+        <ion-title>pokemon detail</ion-title>
+    </ion-toolbar>
 </ion-header>
 
-<ion-content>
-<h1 class="test">detail</h1>
+<ion-content padding>
+    <ion-card>
+     <ion-card-header>
+        <ion-item>
+            <ion-avatar slot="start">
+                <img [src]="pokDetail?.img">
+            </ion-avatar>
+            <h1>{{pokDetail?.name}}</h1>
+            <p> height  {{ pokDetail?.height}} weight:  {{ pokDetail?.weight}}</p>
+        </ion-item>
+     </ion-card-header>
+
+        <ion-card-content padding>
+            <ion-list>
+                <ion-title text-center>
+                    <h2>Abilities</h2>
+                </ion-title>
+                <ion-item *ngFor=" let ab of pokDetail?.abilities">
+
+                   <ion-label>{{ab.ability.name}}</ion-label>
+                    <ion-badge> {{ab.slot}}</ion-badge>
+
+                </ion-item>
+            </ion-list>
+        </ion-card-content>
+
+        <ion-row>
+            <ion-col col-6 text-center>
+                <button ion-button icon-left clear small (click)="addToFavorite()">
+                    <ion-icon color="{{isFavorite ? 'danger' : ''}}"
+                              name="heart{{isFavorite ? '' : '-outline'}}"></ion-icon>
+                </button>
+            </ion-col>
+            <ion-col col-6 text-center>
+                <button ion-button icon-left clear small>
+                    <ion-icon name="share"></ion-icon>
+
+                </button>
+            </ion-col>
+
+        </ion-row>
+
+    </ion-card>
+
+
 </ion-content>

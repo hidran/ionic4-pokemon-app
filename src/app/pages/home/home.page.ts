@@ -17,13 +17,13 @@ export class HomePage implements OnInit {
 
     loading: any;
 
+
     constructor(private pokApi: PokDataProvider,
                 private loadingCtrl: LoadingController,
                 private  evt: Events,
-                private route: ActivatedRoute,
-                private router : Router
+                private router: Router,
+                private route: ActivatedRoute
                 ) {
-        //alert(route.snapshot.pathFromRoot)
         this.evt.subscribe('pok-searched', res => {
             this.filterPoks(res);
         });
@@ -32,7 +32,6 @@ export class HomePage implements OnInit {
     }
 
     ngOnInit(): void {
-        alert(this.route.paramMap.subscribe(pars => console.log(pars)))
         this.presentLoading().then(
             () => this.getPokemons()
         );
@@ -66,16 +65,13 @@ export class HomePage implements OnInit {
     }
 
     showPokDetail(pok: Pokemon) {
-        alert(pok.id);
+ // this.router.navigateByUrl('pokemons/home/pokemon-detail/' + pok.id);
+       /* this.router.navigate(['pokemon-detail', pok.id],
+            {relativeTo: this.route}
+            );
+            */
 
-        this.router.navigate(['./pokemon-detail', pok.id]);
-        /*this.presentLoading();
-        this.pokApi.getPokemonDetails(pok).subscribe(
-            (res: IPokemonDetails) => {
-                this.navCtrl.push('PokemonDetailPage', {pokDetail: res, pok: pok});
-            }
-        );
-        */
+
 
 
     }
