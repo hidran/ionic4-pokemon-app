@@ -1,11 +1,25 @@
+<ion-router-outlet></ion-router-outlet>
 <ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Pokémons
-    </ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-title>
+            Pokémons
+        </ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
+
+    <ion-list>
+        <ion-item
+                [routerLink]="['/',pok.id]"
+                *ngFor="let pok of pokemons"  detail>
+
+            <ion-thumbnail slot="start">
+                <img [src]="pok.img">
+            </ion-thumbnail>
+            <ion-label> <h2>{{ pok.name}}</h2></ion-label>
+       </ion-item>
+
+    </ion-list>
 </ion-content>

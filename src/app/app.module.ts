@@ -10,11 +10,12 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {PokDataProvider} from './services/pok-data/pok-data';
 import {PokemonApiProvider} from './services/pokemon-api/pokemon-api';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
     declarations: [AppComponent],
     entryComponents: [],
-    imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
+    imports: [HttpClientModule, BrowserModule, IonicModule.forRoot(), AppRoutingModule],
     providers: [
         PokDataProvider,
         PokemonApiProvider,
