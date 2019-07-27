@@ -10,7 +10,7 @@ export class Pokemon {
         this.name = pok.name;
         const pieces = pok.url.split('/');
         this.id = +pieces[pieces.length - 2];
-        this.img = this.spriteUrl + this.id + '.png2';
+        this.img = this.spriteUrl + this.id + '.png';
 
     }
 

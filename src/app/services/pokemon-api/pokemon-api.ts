@@ -6,17 +6,18 @@ import {map, tap} from 'rxjs/operators';
 import {IPokemonData} from '../../models/pokemon-data';
 import {Pokemon} from '../../models/pokemon';
 import {IPokemonDetails} from '../../models/pokemon-details';
-
+import {environment} from '../../../environments/environment';
 
 @Injectable({
     providedIn : 'root'
 })
 export class PokemonApiProvider {
 
-    pokUrl = 'https://pokeapi.co/api/v2/pokemon/';
-    private limit = 100;
 
+    private limit = 100;
+    pokUrl: string;
     constructor(public http: HttpClient) {
+        this.pokUrl = environment.pokUrl;
         console.log('Hello PokemonApiProvider Provider');
     }
 

@@ -33,8 +33,8 @@ export class PokDataProvider {
 
     }
 
-    getPokemonDetails(pok: Pokemon): Observable<IPokemonDetails> {
-        const storageId = 'pokemon-' + pok.name;
+    getPokemonDetails(pokId: number): Observable<IPokemonDetails> {
+        const storageId = 'pokemon-' + pokId;
         if (localStorage.getItem(storageId)) {
             const pokResults = JSON.parse(localStorage.getItem(storageId));
 
@@ -43,7 +43,7 @@ export class PokDataProvider {
             }
         }
 
-        return this.pokApi.getPokemonDetails(pok);
+        return this.pokApi.getPokemonDetails(pokId);
 
 
     }

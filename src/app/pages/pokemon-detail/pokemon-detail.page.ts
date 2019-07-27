@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Events, LoadingController} from '@ionic/angular';
-import {PokemonApiProvider} from '../../services/pokemon-api/pokemon-api';
 import {IPokemonDetails} from '../../models/pokemon-details';
 import {PokDataProvider} from '../../services/pok-data/pok-data';
 import {Pokemon} from '../../models/pokemon';
+import {environment} from '../../../environments/environment';
 
 @Component({
     selector: 'app-pokemon-detail',
@@ -14,22 +14,30 @@ import {Pokemon} from '../../models/pokemon';
 export class PokemonDetailPage implements OnInit {
     pokId: number;
     loading: any;
-    pokDetail: IPokemonDetails = {name: '',
-    weight: 0,
-    height: 0,
-    abilities: []
+    pokDetail: IPokemonDetails = {
+        name: '',
+        weight: 0,
+        height: 0,
+        abilities: []
     };
-    isFavorite = false;
+    pokemon: Pokemon;
+    isFavorite = true;
 
     constructor(
         private router: Router,
         private  route: ActivatedRoute,
         private loadingCtrl: LoadingController,
-        private pokApi: PokemonApiProvider,
         private evt: Events,
         private pokData: PokDataProvider,
     ) {
         this.pokId = +route.snapshot.paramMap.get('id');
+        const name = route.snapshot.queryParamMap.get('name');
+        this.pokemon = new Pokemon(
+            {
+                name,
+                url: environment.pokUrl + this.pokId +'/'
+            }
+        );
 
     }
 
@@ -45,7 +53,11 @@ export class PokemonDetailPage implements OnInit {
 
     async ngOnInit() {
         await this.presentLoading();
-        this.pokDetail = await this.pokApi.getPokemonDetails(this.pokId).toPromise();
+        this.pokDetail = await this.pokData
+            .getPokemonDetails(this.pokId)
+            .toPromise();
+
+        console.log(this.pokDetail);
         this.loading.dismiss();
     }
 

@@ -12,46 +12,53 @@
 
 <ion-content padding>
     <ion-card>
-     <ion-card-header>
-        <ion-item>
-            <ion-avatar slot="start">
-                <img [src]="pokDetail?.img">
-            </ion-avatar>
-            <h1>{{pokDetail?.name}}</h1>
-            <p> height  {{ pokDetail?.height}} weight:  {{ pokDetail?.weight}}</p>
-        </ion-item>
-     </ion-card-header>
+        <img [src]="pokemon.img">
+        <ion-card-header>
+
+
+            <ion-card-title class="ion-text-center">{{pokemon.name}}</ion-card-title>
+
+
+        </ion-card-header>
 
         <ion-card-content padding>
             <ion-list>
-                <ion-title text-center>
-                    <h2>Abilities</h2>
-                </ion-title>
+                <ion-item>
+
+                    <ion-label>Height</ion-label>
+                    <ion-badge slot="end" color="danger"> {{pokDetail.height}}</ion-badge>
+                </ion-item>
+                <ion-item>
+                    <ion-label>Weight</ion-label>
+                    <ion-badge slot="end" color="danger"> {{pokDetail.weight}}</ion-badge>
+                </ion-item>
                 <ion-item *ngFor=" let ab of pokDetail?.abilities">
 
-                   <ion-label>{{ab.ability.name}}</ion-label>
-                    <ion-badge> {{ab.slot}}</ion-badge>
+                    <ion-label>{{ab.ability.name}}</ion-label>
+                    <ion-badge slot="end" color="danger"> {{ab.slot}}</ion-badge>
 
                 </ion-item>
             </ion-list>
         </ion-card-content>
-
+<ion-grid>
         <ion-row>
-            <ion-col col-6 text-center>
-                <button ion-button icon-left clear small (click)="addToFavorite()">
-                    <ion-icon color="{{isFavorite ? 'danger' : ''}}"
-                              name="heart{{isFavorite ? '' : '-outline'}}"></ion-icon>
-                </button>
-            </ion-col>
-            <ion-col col-6 text-center>
-                <button ion-button icon-left clear small>
-                    <ion-icon name="share"></ion-icon>
+            <ion-col size="6" class="ion-text-center">
+                <ion-item button  (click)="addToFavorite()" detail="false">
+                    <ion-icon slot="start" color="{{isFavorite ? 'danger' : ''}}"
+                              name="heart{{isFavorite ? '' : '-empty'}}">
 
-                </button>
+                    </ion-icon>
+                </ion-item>
+            </ion-col>
+            <ion-col   size="6" align-items-center>
+                <ion-item button detail="false">
+                    <ion-icon name="share" slot="end"></ion-icon>
+
+                </ion-item>
             </ion-col>
 
         </ion-row>
-
+</ion-grid>
     </ion-card>
 
 

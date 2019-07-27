@@ -5,6 +5,7 @@ import {LoadingController} from '@ionic/angular';
 import {Events} from '@ionic/angular';
 import {IPokemonDetails} from '../../models/pokemon-details';
 import {ActivatedRoute, Router} from '@angular/router';
+import {environment} from '../../../environments/environment';
 
 @Component({
     selector: 'app-home',

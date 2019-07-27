@@ -11,7 +11,7 @@
 
 
     <ion-list>
-        <ion-item button [routerLink]="['pokemon-detail', pok.id]" *ngFor="let pok of pokemons" detail>
+        <ion-item button [queryParams]="{name:pok.name}"  [routerLink]="['pokemon-detail', pok.id]" *ngFor="let pok of pokemons" detail>
 
             <ion-thumbnail slot="start">
                 <img [src]="pok.img">
